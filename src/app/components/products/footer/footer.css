@@ -1,0 +1,12 @@
+.footer { 
+    width: 100%; 
+    padding-top: 20px;
+    background-color: rgb(187, 187, 187); 
+    color: white;
+    bottom: 0;
+    text-align: center;
+    color: black; 
+    padding-bottom: 20px;
+    font-weight: bold;
+    font-style: italic;
+}
