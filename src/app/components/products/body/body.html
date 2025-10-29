@@ -1,159 +1,20 @@
 <div class="container my-5">
     <h1 class="mb-4 text-center">Our Products</h1>
-    <div class="row g-4">
-      
-      <div class="col-4">
-        <div class="card h-100 text-center shadow">
-          <img src="https://placehold.co/600x400" class="card-img-top" alt="Product 1">
-          <div class="card-body">
-            <h5 class="card-title">Product Name 1</h5>
-            <p class="card-text"><strong>$49.99</strong></p>
-            <button type="button" class="btn btn-primary" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#cartModal">
-             Add to Cart
-           </button> 
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-4">
-        <div class="card h-100 text-center shadow">
-          <img src="https://placehold.co/600x400" class="card-img-top" alt="Product 2">
-          <div class="card-body">
-            <h5 class="card-title">Product Name 2</h5>
-            <p class="card-text"><strong>$59.99</strong></p>
-            <button type="button" class="btn btn-primary" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#cartModal">
-             Add to Cart
-           </button> 
-          </div>
-        </div>
-      </div>
 
-      <div class="col-4">
-        <div class="card h-100 text-center shadow">
-          <img src="https://placehold.co/600x400" class="card-img-top" alt="Product 3">
-          <div class="card-body">
-            <h5 class="card-title">Product Name 3</h5>
-            <p class="card-text"><strong>$39.99</strong></p>
-            <button type="button" class="btn btn-primary" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#cartModal">
-             Add to Cart
-           </button> 
+    <div class="row row-cols-3 g-3">
+      <RouterLink [routerLink]="['/product-page', item.id]" class="text-decoration-none text-dark" *ngFor="let item of items | slice:0:9">
+      <div  class="col d-flex my-5">
+        <div class="card w-100">
+          <img [src]="item.image" class="card-img-top" [alt]="item.name">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text"><strong>Preț: {{ item.price }} MDL</strong></p>
           </div>
         </div>
       </div>
-  
-      <div class="col-4">
-        <div class="card h-100 text-center shadow">
-          <img src="https://placehold.co/600x400" class="card-img-top" alt="Product 4">
-          <div class="card-body">
-            <h5 class="card-title">Product Name 4</h5>
-            <p class="card-text"><strong>$29.99</strong></p>
-            <button type="button" class="btn btn-primary" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#cartModal">
-             Add to Cart
-           </button> 
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-4">
-        <div class="card h-100 text-center shadow">
-          <img src="https://placehold.co/600x400" class="card-img-top" alt="Product 5">
-          <div class="card-body">
-            <h5 class="card-title">Product Name 5</h5>
-            <p class="card-text"><strong>$19.99</strong></p>
-            <button type="button" class="btn btn-primary" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#cartModal">
-             Add to Cart
-           </button> 
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-4">
-        <div class="card h-100 text-center shadow">
-          <img src="https://placehold.co/600x400" class="card-img-top" alt="Product 6">
-          <div class="card-body">
-            <h5 class="card-title">Product Name 6</h5>
-            <p class="card-text"><strong>$34.99</strong></p>
-            <button type="button" class="btn btn-primary" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#cartModal">
-             Add to Cart
-           </button> 
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-4">
-        <div class="card h-100 text-center shadow">
-          <img src="https://placehold.co/600x400" class="card-img-top" alt="Product 7">
-          <div class="card-body">
-            <h5 class="card-title">Product Name 7</h5>
-            <p class="card-text"><strong>$44.99</strong></p>
-            <button type="button" class="btn btn-primary" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#cartModal">
-             Add to Cart
-           </button> 
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-4">
-        <div class="card h-100 text-center shadow">
-          <img src="https://placehold.co/600x400" class="card-img-top" alt="Product 8">
-          <div class="card-body">
-            <h5 class="card-title">Product Name 8</h5>
-            <p class="card-text"><strong>$54.99</strong></p>
-            <button type="button" class="btn btn-primary" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#cartModal">
-             Add to Cart
-           </button> 
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-4">
-        <div class="card h-100 text-center shadow">
-          <img src="https://placehold.co/600x400" class="card-img-top" alt="Product 9">
-          <div class="card-body">
-            <h5 class="card-title">Product Name 9</h5>
-            <p class="card-text"><strong>$64.99</strong></p>
-            <button type="button" class="btn btn-primary" 
-                  data-bs-toggle="modal" 
-                  data-bs-target="#cartModal">
-             Add to Cart
-           </button> 
-          </div>
-        </div>
-      </div>
-  
+      </RouterLink>
     </div>
-  </div>
-  
+    
 
-  <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content text-center">
-        <div class="modal-header">
-          <h5 class="modal-title">Added to Cart</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          Product added successfully!
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
+

@@ -1,9 +1,14 @@
 import { Routes } from '@angular/router';
 import { HomeConnectorComponent } from './components/home/home-connector/home-connector.component';
 import { ProductConnectorComponent } from './components/products/product-connector/product-conector.component';
+import { ProductPageConnectorComponent } from './components/productPage/productPage-connector/productPage-connector.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, 
-  { path: 'home', component: HomeConnectorComponent }, 
-  { path: 'products', component: ProductConnectorComponent } 
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeConnectorComponent },
+  { path: 'products', component: ProductConnectorComponent },
+  { path: 'product-page/:id', component: ProductPageConnectorComponent },
+  
 ];
+
+

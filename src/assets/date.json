@@ -1,0 +1,93 @@
+[
+    {
+        "id": 1,
+        "name": "Wireless Headphones",
+        "price": 79.99,
+        "description": "Over-ear Bluetooth headphones with noise isolation and 20h battery life.",
+        "image": "https://placehold.co/600x400?text=Wireless+Headphones"
+    },
+    {
+        "id": 2,
+        "name": "Smartphone Stand",
+        "price": 14.5,
+        "description": "Adjustable aluminum stand for phones and small tablets.",
+        "image": "https://placehold.co/600x400?text=Smartphone+Stand"
+    },
+    {
+        "id": 3,
+        "name": "Portable Charger 10000mAh",
+        "price": 29.99,
+        "description": "Compact power bank with fast charging and dual USB outputs.",
+        "image": "https://placehold.co/600x400?text=Portable+Charger+10000mAh"
+    },
+    {
+        "id": 4,
+        "name": "Wireless Mouse",
+        "price": 24.0,
+        "description": "Ergonomic optical mouse with silent clicks and adjustable DPI.",
+        "image": "https://placehold.co/600x400?text=Wireless+Mouse"
+    },
+    {
+        "id": 5,
+        "name": "Mechanical Keyboard",
+        "price": 89.99,
+        "description": "Compact mechanical keyboard with RGB backlight and tactile switches.",
+        "image": "https://placehold.co/600x400?text=Mechanical+Keyboard"
+    },
+    {
+        "id": 6,
+        "name": "Ceramic Coffee Mug",
+        "price": 9.75,
+        "description": "350ml ceramic mug, dishwasher safe, matte finish.",
+        "image": "https://placehold.co/600x400?text=Ceramic+Coffee+Mug"
+    },
+    {
+        "id": 7,
+        "name": "LED Desk Lamp",
+        "price": 39.5,
+        "description": "Dimmable LED lamp with adjustable arm and USB charging port.",
+        "image": "https://placehold.co/600x400?text=LED+Desk+Lamp"
+    },
+    {
+        "id": 8,
+        "name": "Running Shoes",
+        "price": 64.99,
+        "description": "Lightweight running shoes with breathable mesh upper and cushioned sole.",
+        "image": "https://placehold.co/600x400?text=Running+Shoes"
+    },
+    {
+        "id": 9,
+        "name": "Stainless Steel Water Bottle",
+        "price": 19.0,
+        "description": "Insulated 500ml bottle keeps drinks cold for 24h or hot for 12h.",
+        "image": "https://placehold.co/600x400?text=Stainless+Steel+Water+Bottle"
+    },
+    {
+        "id": 10,
+        "name": "Bluetooth Speaker",
+        "price": 45.0,
+        "description": "Portable Bluetooth speaker with rich bass and 10h playtime.",
+        "image": "https://placehold.co/600x400?text=Bluetooth+Speaker"
+    },
+    {
+        "id": 11,
+        "name": "Yoga Mat",
+        "price": 22.5,
+        "description": "Non-slip yoga mat with 6mm cushioning for comfort and support.",
+        "image": "https://placehold.co/600x400?text=Yoga+Mat"
+    },
+    {
+        "id": 12,
+        "name": "Backpack 20L",
+        "price": 49.99,
+        "description": "Durable 20L backpack with laptop compartment and water-resistant fabric.",
+        "image": "https://placehold.co/600x400?text=Backpack+20L"
+    },
+    {
+        "id": 13,
+        "name": "Smartwatch",
+        "price": 129.99,
+        "description": "Fitness-focused smartwatch with heart-rate monitor and GPS.",
+        "image": "https://placehold.co/600x400?text=Smartwatch"
+    }
+]

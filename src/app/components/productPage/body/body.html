@@ -1,0 +1,22 @@
+<div *ngIf="product" class="container d-flex justify-content-center align-items-center mt-5">
+  <div class="card shadow-lg border-0" style="max-width: 400px; width: 100%; margin-bottom: 10vh;">
+    <img
+      [src]="product.image"
+      [alt]="product.name"
+      class="card-img-top img-fluid rounded-top"
+      style="object-fit: cover; max-height: 300px;"
+    />
+    <div class="card-body text-center">
+      <h2 class="card-title mb-3 fw-bold">{{ product.name }}</h2>
+      <p class="card-text text-secondary mb-4">{{ product.description }}</p>
+      <h4 class="text-success fw-bold">{{ product.price }} MDL</h4>
+      <button class="btn btn-primary mt-3 px-4">Adaugă în coș</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!product" class="text-center mt-5">
+  <div class="alert alert-warning d-inline-block shadow-sm" role="alert">
+    Produsul nu a fost găsit.
+  </div>
+</div>

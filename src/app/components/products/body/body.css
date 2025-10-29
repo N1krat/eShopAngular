@@ -1,0 +1,9 @@
+.card:hover {
+    transform: translateY(-22px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .card img {
+    transition: transform 0.3s ease;
+  }
