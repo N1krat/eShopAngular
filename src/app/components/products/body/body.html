@@ -2,19 +2,15 @@
     <h1 class="mb-4 text-center">Our Products</h1>
 
     <div class="row row-cols-3 g-3">
-      <RouterLink [routerLink]="['/product-page', item.id]" class="text-decoration-none text-dark" *ngFor="let item of items | slice:0:9">
-      <div  class="col d-flex my-5">
+      <div class="col d-flex my-5" >
         <div class="card w-100">
-          <img [src]="item.image" class="card-img-top" [alt]="item.name">
+          <img src="https://placehold.co/400x300" class="card-img-top" alt="Product image">
           <div class="card-body text-center">
-            <h5 class="card-title">{{ item.name }}</h5>
-            <p class="card-text"><strong>Preț: {{ item.price }} MDL</strong></p>
+            <h5 class="card-title">gdfgd</h5>
+            <p class="card-text"><strong>Preț: 1241 MDL</strong></p>
           </div>
         </div>
       </div>
-      </RouterLink>
     </div>
-    
 
-</div>
 
