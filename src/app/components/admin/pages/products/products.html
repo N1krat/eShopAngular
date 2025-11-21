@@ -14,8 +14,10 @@
         <th>#</th>
         <th>Name</th>
         <th>Price</th>
+        <th>Description</th>
         <th>Stock</th>
         <th>Images</th>
+        <th></th>
       </tr>
     </thead>
 
@@ -24,6 +26,7 @@
         <td>{{ i + 1 }}</td>
         <td>{{ product.name }}</td>
         <td>{{ product.price }} $</td>
+        <td>{{ product.description }}</td>
         <td>{{ product.stock }}</td>
         <td>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#imageModal' + product.id">
@@ -43,6 +46,11 @@
                 </div>
                 </div>
             </div>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" (click)="removeProduct(product.id!)">
+                    Delete Product
+                </button>
             </td>
       </tr>
     </tbody>

@@ -9,11 +9,15 @@ import { AdminProducts } from './components/admin/pages/products/admin-products.
 import { AdminUsers } from './components/admin/pages/users/admin-users.component';
 import { AdminOrders } from './components/admin/pages/orders/admin-orders.component';
 
+// registrarea si logarea 
+import { LoginConnectorComponent } from './components/loginPage/login-connector/login-connector.component';
+import { RegisterConnectorComponent } from './components/registerPage/register-connector/register-connector.component';
+
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeConnectorComponent },
   { path: 'products', component: ProductConnectorComponent },
-  { path: 'product-page/:id', component: ProductPageConnectorComponent },
+  { path: 'product/:id', component: ProductPageConnectorComponent },
   {
     path: 'admin',
     component: AdminConnectorComponent,
@@ -23,6 +27,8 @@ export const routes: Routes = [
       { path: 'users', component: AdminUsers },
       { path: 'orders', component: AdminOrders }
     ]
-  }
+  }, 
+  { path: 'login', component: LoginConnectorComponent },
+  { path: 'register', component: RegisterConnectorComponent }
 ];
 

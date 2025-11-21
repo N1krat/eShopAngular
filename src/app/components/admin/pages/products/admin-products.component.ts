@@ -15,7 +15,7 @@ export class AdminProducts implements OnInit {
 
   products: Product[] = [];
 
-  newProduct: Partial<Product> & { imageFiles?: File[] } = {
+  newProduct: Partial<Product> & { imageFile?: File } = {
     name: '',
     description: '',
     stock: 0,
@@ -35,7 +35,7 @@ export class AdminProducts implements OnInit {
         // Ensure 'images' is always an array for *ngFor
         this.products = data.map(p => ({
           ...p,
-          images: Array.isArray(p.image) ? p.images : (p.image ? [p.image] : [])
+          images: Array.isArray(p.images) ? p.images : (p.image ? [p.image] : [])
         }));
       },
       error: (err) => console.error('Error loading products:', err)
@@ -43,9 +43,9 @@ export class AdminProducts implements OnInit {
   }
 
   onFileSelected(event: any) {
-    const files: FileList = event.target.files;
-    if (files.length) {
-      this.newProduct.imageFiles = Array.from(files);
+    const file: File = event.target.files[0];
+    if (file) {
+      this.newProduct.imageFile = file;
     }
   }
 
@@ -58,9 +58,8 @@ export class AdminProducts implements OnInit {
     formData.append('stock', (this.newProduct.stock || 0).toString());
     formData.append('price', (this.newProduct.price || 0).toString());
 
-    // Append multiple images
-    if (this.newProduct.imageFiles) {
-      this.newProduct.imageFiles.forEach(file => formData.append('images', file));
+    if (this.newProduct.imageFile) {
+      formData.append('image', this.newProduct.imageFile);
     }
 
     this.adminService.addProduct(formData).subscribe({
@@ -74,9 +73,21 @@ export class AdminProducts implements OnInit {
 
         // Reset form
         this.newProduct = { name: '', description: '', stock: 0, price: 0, image: '' };
-        this.newProduct.imageFiles = [];
+        this.newProduct.imageFile = undefined;
       },
       error: (err) => console.error('Error adding product:', err)
+    });
+  }
+
+  removeProduct(id: number) {
+    if (!confirm("Are you sure you want to delete this product?")) return;
+
+    this.adminService.removeProduct(id).subscribe({
+      next: () => {
+        console.log('Product removed:', id);
+        this.loadProducts(); // refresh list
+      },
+      error: (err) => console.error('Error deleting product:', err)
     });
   }
 }
