@@ -15,16 +15,13 @@ export class AdminProducts implements OnInit {
 
   products: Product[] = [];
 
-  newProduct: Product = {
-    id: 0,
+  newProduct: Partial<Product> & { imageFiles?: File[] } = {
     name: '',
     description: '',
     stock: 0,
     price: 0,
     image: ''
   };
-
-  selectedFile: File | null = null;
 
   constructor(private adminService: AdminService) {}
 
@@ -34,15 +31,21 @@ export class AdminProducts implements OnInit {
 
   loadProducts() {
     this.adminService.getProducts().subscribe({
-      next: (data: Product[]) => this.products = data,
+      next: (data: Product[]) => {
+        // Ensure 'images' is always an array for *ngFor
+        this.products = data.map(p => ({
+          ...p,
+          images: Array.isArray(p.image) ? p.images : (p.image ? [p.image] : [])
+        }));
+      },
       error: (err) => console.error('Error loading products:', err)
     });
   }
 
   onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
+    const files: FileList = event.target.files;
+    if (files.length) {
+      this.newProduct.imageFiles = Array.from(files);
     }
   }
 
@@ -50,24 +53,28 @@ export class AdminProducts implements OnInit {
     if (!this.newProduct.name || !this.newProduct.price) return;
 
     const formData = new FormData();
-    formData.append('name', this.newProduct.name);
-    formData.append('description', this.newProduct.description);
-    formData.append('stock', this.newProduct.stock.toString());
-    formData.append('price', this.newProduct.price.toString());
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile);
+    formData.append('name', this.newProduct.name!);
+    formData.append('description', this.newProduct.description || '');
+    formData.append('stock', (this.newProduct.stock || 0).toString());
+    formData.append('price', (this.newProduct.price || 0).toString());
+
+    // Append multiple images
+    if (this.newProduct.imageFiles) {
+      this.newProduct.imageFiles.forEach(file => formData.append('images', file));
     }
 
     this.adminService.addProduct(formData).subscribe({
       next: (res) => {
         console.log('Product added:', res);
         this.loadProducts();
-        // Close the modal manually
+
+        // Close modal
         const modal = document.getElementById('addProductModal');
         if (modal) (window as any).bootstrap.Modal.getInstance(modal)?.hide();
+
         // Reset form
-        this.newProduct = { id: 0, name: '', description: '', stock: 0, price: 0, image: '' };
-        this.selectedFile = null;
+        this.newProduct = { name: '', description: '', stock: 0, price: 0, image: '' };
+        this.newProduct.imageFiles = [];
       },
       error: (err) => console.error('Error adding product:', err)
     });

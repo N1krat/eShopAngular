@@ -5,7 +5,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 
-const db = new Database("database.db"); // no serialize needed
+const db = new Database("database.db");
 const app = express();
 
 app.use(cors());
@@ -39,7 +39,7 @@ db.prepare(`
     description TEXT,
     price REAL NOT NULL,
     stock INTEGER NOT NULL, 
-    image TEXT
+    images TEXT
   )
 `).run();
 
@@ -83,6 +83,10 @@ app.post("/users", (req, res) => {
 app.get("/api/products", (req, res) => {
   try {
     const products = db.prepare("SELECT * FROM products").all();
+    // parse images JSON for each product
+    products.forEach(p => {
+      p.images = p.images ? JSON.parse(p.images) : [];
+    });
     res.json(products);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -90,14 +94,21 @@ app.get("/api/products", (req, res) => {
 });
 
 // ---------------- POST PRODUCTS ----------------
-app.post("/api/products", upload.single("image"), (req, res) => {
+// Accept multiple images with 'images' field
+app.post("/api/products", upload.array("images", 10), (req, res) => {
   try {
     const { name, description, price, stock } = req.body;
-    const image = req.file ? `/uploads/${req.file.filename}` : "";
+    const images = req.files?.map(file => `/uploads/${file.filename}`) || [];
 
     const result = db.prepare(
-      "INSERT INTO products (name, description, price, stock, image) VALUES (?, ?, ?, ?, ?)"
-    ).run(name, description, parseFloat(price), parseInt(stock), image);
+      "INSERT INTO products (name, description, price, stock, images) VALUES (?, ?, ?, ?, ?)"
+    ).run(
+      name,
+      description,
+      parseFloat(price),
+      parseInt(stock),
+      JSON.stringify(images)
+    );
 
     res.json({ success: true, id: result.lastInsertRowid });
   } catch (err) {

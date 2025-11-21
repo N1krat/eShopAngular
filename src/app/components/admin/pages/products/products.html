@@ -15,7 +15,7 @@
         <th>Name</th>
         <th>Price</th>
         <th>Stock</th>
-        <th>Image</th>
+        <th>Images</th>
       </tr>
     </thead>
 
@@ -26,24 +26,24 @@
         <td>{{ product.price }} $</td>
         <td>{{ product.stock }}</td>
         <td>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#imageModal' + product.id">
-            View Image
-          </button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#imageModal' + product.id">
+                View Images
+            </button>
 
-          <!-- Image Modal -->
-          <div class="modal fade" [id]="'imageModal' + product.id" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="imageModalLabel">{{ product.name }}</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal fade" [id]="'imageModal' + product.id" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">{{ product.name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex flex-wrap gap-2">
+                    <img *ngFor="let img of product.images" [src]="'http://localhost:3000' + img" class="img-fluid" style="max-width: 150px;" alt="{{ product.name }}">
+                    </div>
                 </div>
-                <div class="modal-body">
-                  <img [src]="'http://localhost:3000' + product.image" class="img-fluid" alt="{{ product.name }}">
                 </div>
-              </div>
             </div>
-          </div>
+            </td>
       </tr>
     </tbody>
   </table>
@@ -81,8 +81,8 @@
             </div>
 
             <div class="mb-3">
-              <label for="image" class="form-label">Product Image</label>
-              <input type="file" id="image" class="form-control" (change)="onFileSelected($event)">
+              <label for="images" class="form-label">Product Images</label>
+              <input type="file" id="images" class="form-control" (change)="onFileSelected($event)" multiple>
             </div>
 
           </div>

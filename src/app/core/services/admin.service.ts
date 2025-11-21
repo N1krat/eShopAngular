@@ -9,31 +9,73 @@ import { Order } from '../models/orders.model';
   providedIn: 'root'
 })
 export class AdminService {
-  private apiUrl = 'http://localhost:3000'; // backend base URL
+  private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
-  // ---------------- USERS ----------------
+  // ---------------- USERS CRUD ----------------
+
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
+  }
+
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/users/${id}`);
   }
 
   addUser(user: Partial<User>): Observable<any> {
     return this.http.post(`${this.apiUrl}/users`, user);
   }
 
-  // ---------------- PRODUCTS ----------------
+  updateUser(id: number, data: Partial<User>): Observable<any> {
+    return this.http.put(`${this.apiUrl}/users/${id}`, data);
+  }
+
+  removeUser(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/users/${id}`);
+  }
+
+  // ---------------- PRODUCTS CRUD ----------------
+
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}/api/products`);
   }
 
-  // Updated addProduct to accept FormData (for image upload)
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/api/products/${id}`);
+  }
+
   addProduct(formData: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/api/products`, formData);
   }
 
-  // ---------------- ORDERS ----------------
+  updateProduct(id: number, formData: FormData): Observable<any> {
+    return this.http.put(`${this.apiUrl}/api/products/${id}`, formData);
+  }
+
+  removeProduct(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/api/products/${id}`);
+  }
+
+  // ---------------- ORDERS CRUD ----------------
+
   getOrders(): Observable<Order[]> {
     return this.http.get<Order[]>(`${this.apiUrl}/orders`);
+  }
+
+  getOrderById(id: number): Observable<Order> {
+    return this.http.get<Order>(`${this.apiUrl}/orders/${id}`);
+  }
+
+  addOrder(order: Partial<Order>): Observable<any> {
+    return this.http.post(`${this.apiUrl}/orders`, order);
+  }
+
+  updateOrder(id: number, data: Partial<Order>): Observable<any> {
+    return this.http.put(`${this.apiUrl}/orders/${id}`, data);
+  }
+
+  removeOrder(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/orders/${id}`);
   }
 }
