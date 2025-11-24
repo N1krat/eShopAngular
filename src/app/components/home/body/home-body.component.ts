@@ -13,6 +13,8 @@ import { Product } from '../../../core/models/product.model';
 export class BodyComponent implements OnInit {
   products: Product[] = [];
 
+  offerImage: string = '/uploads/Desktop-1045x480-RO.jpg';
+
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
@@ -22,7 +24,6 @@ export class BodyComponent implements OnInit {
   loadProducts() {
     this.adminService.getProducts().subscribe({
       next: (data) => {
-        // Ensure each product has an image array
         this.products = data.map(p => ({
           ...p,
           image: p.images && p.images.length > 0 ? p.images[0] : null

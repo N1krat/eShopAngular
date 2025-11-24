@@ -32,7 +32,6 @@ export class AdminProducts implements OnInit {
   loadProducts() {
     this.adminService.getProducts().subscribe({
       next: (data: Product[]) => {
-        // Ensure 'images' is always an array for *ngFor
         this.products = data.map(p => ({
           ...p,
           images: Array.isArray(p.images) ? p.images : (p.image ? [p.image] : [])
@@ -67,11 +66,11 @@ export class AdminProducts implements OnInit {
         console.log('Product added:', res);
         this.loadProducts();
 
-        // Close modal
+   
         const modal = document.getElementById('addProductModal');
         if (modal) (window as any).bootstrap.Modal.getInstance(modal)?.hide();
 
-        // Reset form
+  
         this.newProduct = { name: '', description: '', stock: 0, price: 0, image: '' };
         this.newProduct.imageFile = undefined;
       },
@@ -85,7 +84,7 @@ export class AdminProducts implements OnInit {
     this.adminService.removeProduct(id).subscribe({
       next: () => {
         console.log('Product removed:', id);
-        this.loadProducts(); // refresh list
+        this.loadProducts(); 
       },
       error: (err) => console.error('Error deleting product:', err)
     });

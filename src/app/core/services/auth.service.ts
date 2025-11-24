@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
 export class AuthService {
   private apiUrl = 'http://localhost:3000/auth/login';
 
-  private loggedIn = new BehaviorSubject<boolean>(false); // initial false
+  private loggedIn = new BehaviorSubject<boolean>(false); 
   isLoggedIn$ = this.loggedIn.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {
-    // verificăm doar dacă suntem în browser
+  
     if (typeof window !== 'undefined') {
       const token = localStorage.getItem('token');
       if (token) this.loggedIn.next(true);
@@ -37,7 +37,6 @@ export class AuthService {
       localStorage.removeItem('token');
       this.loggedIn.next(false);
 
-      // redirect to login page
       this.router.navigate(['/login']);
     }
   }
